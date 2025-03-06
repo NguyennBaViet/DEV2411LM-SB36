@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí bài viết</title>
+</head>
+<body>
+<header th:replace="fragments/ContentManagement :: header"></header>
+
+<section class="container mt-4">
+  <h1>Quản lí bài viết</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tiêu Đề</th>
+      <th>Tác Giả</th>
+      <th>Ngày xuất bản</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--    Mẫu lặp-->
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.id}">1</td>
+        <td th:text="${post.title}">Tiêu Đề</td>
+        <td th:text="${post.author}">Tác Giả</td>
+        <td th:text="${post.date}">Ngày xuất bản</td>
+        <td>
+            <a th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Sửa</a>
+            <a th:href="@{/admin/posts/delete/{id}(id=${post.id})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+    <a th:href="@{/admin/posts/add}" class="btn btn-success">Thêm bài viết mới</a>
+</section>
+
+<footer th:replace="fragments/ContentManagement :: footer"></footer>
+</body>
+</html>

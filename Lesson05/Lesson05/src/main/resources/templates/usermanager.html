@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí người dùng</title>
+</head>
+<body>
+<header th:replace="fragments/ContentManagement :: header"></header>
+
+<section class="container mt-4">
+    <h1> Quản lí người dùng </h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Trạng thái</th>
+            <th>Hoạt động</th>
+        </tr>
+        </thead>
+        <tbody>
+<!--        Mẫu lặp ds người dùng-->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.name}">Tên người dùng</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.status}">Hoạt động</td>
+            <td>
+                <a th:href="@{admin/usermanager/edit/{id}(id=${user.id})} " class="btn btn-primary btn-sm">Sửa</a>
+                <a th:href="@{admin/usermanager/delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<footer th:replace="fragments/ContentManagement :: footer"></footer>
+</body>
+</html>
